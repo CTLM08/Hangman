@@ -1082,7 +1082,7 @@ const App = () => {
                 className={`w-12 h-12 big-btn flex justify-center items-center rounded-sm text-xl `}
               >
                 <botton className={`${!ada.includes(e) ? "bruh" : ""}`}>
-                  {e}
+                  {!ada.includes(e) ? "" : `${e}`}
                 </botton>
               </div>
             </button>
