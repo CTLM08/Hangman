@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Cormorant+SC:wght@300&family=Iceberg&family=JetBrains+Mono:wght@500&family=Nunito:wght@200&family=Overpass:wght@300&family=Prompt:wght@100&family=Roboto:ital,wght@1,900&family=Rubik:wght@500&family=ZCOOL+XiaoWei&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+    font-family: 'Rubik', sans-serif;
+}
+.win{
+    background-color: 	#928387;
+}
+.use{
+    background-color: #4C4C4C;
+}
+.big-bg{
+    background-color: #323232;
+}
+*{
+    color: 	#f2f2f2;
+}
+.bruh{
+    color: 	#b2b2b2;
+}
+.small-btn{
+    background-color:#7f7f7f;
+}
+.big-btn{
+    background-color: #b2b2b2;
+}
