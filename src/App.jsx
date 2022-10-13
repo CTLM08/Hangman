@@ -1033,6 +1033,14 @@ const App = () => {
     "Y",
     "Z",
   ];
+  const detect=(e)=>{
+    console.log(e.key)
+
+  }
+  useEffect(()=>{
+    document.addEventListener('keydown',detect,true)
+  },[ada])
+
   const [check_time, checkit] = useState(0);
   const [wrong, iswrong] = useState(0);
   useEffect(() => {
@@ -1053,7 +1061,7 @@ const App = () => {
               console.log(l);
               return l;
             });
-            ada.push(e);
+            check_ada([...ada,e])
             checkit(check_time + l);
             console.log(check_time);
           }
@@ -1069,9 +1077,9 @@ const App = () => {
   return (
     <div className="flex justify-center items-center big-bg h-screen w-full flex-col relative">
       <div className="absolute top-0 w-full p-3 flex flex-row items-center justify-between">
-        <div className="text-2xl">HANGMAN.</div>
+        <div className="text-xl md:text-2xl">HANGMAN.</div>
         <div className="flex flex-row items-center">
-          <div><a href="https://github.com/CTLM08"><Icon icon="ant-design:github-outlined" className="h-8 w-8"/></a></div>
+          <div><a href="https://github.com/CTLM08"><Icon icon="ant-design:github-outlined" className="h-6 w-6 md:h-8 md:w-8"/></a></div>
         </div>
       </div>
       <div>
@@ -1079,7 +1087,7 @@ const App = () => {
           {ans.split("").map((e) => (
             <button>
               <div
-                className={`w-12 h-12 big-btn flex justify-center items-center rounded-sm text-xl `}
+                className={`w-7 h-7 md:w-12 md:h-12 big-btn flex justify-center items-center rounded-sm text-base md:text-xl `}
               >
                 <botton className={`${!ada.includes(e) ? "bruh" : ""}`}>
                   {!ada.includes(e) ? "" : `${e}`}
@@ -1091,7 +1099,7 @@ const App = () => {
       </div>
       <div></div>
       <div className="flex justify-center flex-col items-center">
-        <div className="flex  gap-2 text-center">
+        <div className="flex flex-row gap-2 text-center">
           {mother.map((e) => (
             <button
               className={` ${
@@ -1103,13 +1111,13 @@ const App = () => {
                 check(e);
               }}
             >
-              <div className={`w-8 h-8 flex justify-center items-center `}>
+              <div className={`w-6 h-6 md:w-8 md:h-8 flex justify-center items-center text-xs md:text-base `}>
                 <button>{e}</button>
               </div>
             </button>
           ))}
         </div>
-        <div className="flex  gap-2 mt-2">
+        <div className="grid grid-rows-3 grid-flow-col md:grid-rows-none  gap-2 mt-2">
           {button.map((e) => (
             <button
               className={` ${
@@ -1122,7 +1130,7 @@ const App = () => {
               }}
             >
               {" "}
-              <div className="w-8 h-8 flex justify-center items-center rounded-sm">
+              <div className="w-6 h-6 md:w-8 md:h-8 flex justify-center items-center rounded-sm text-xs md:text-base">
                 <botton>{e}</botton>
               </div>
             </button>
