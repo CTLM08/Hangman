@@ -2,27 +2,95 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.big-bg{
+    background-color: 	#f7f7f7;
+}
+.big-btn{
+    background-color: 	#8b9dc3;
+}
+.small-btn{
+    background-color: 	#3b5998;
+}
 *{
     font-family: 'Rubik', sans-serif;
 }
 .win{
+    background-color:#3b5998 ;
+}
+.dark .win{
     background-color: 	#928387;
 }
 .use{
+    background-color: #dfe3ee;
+}
+.dark.use{
     background-color: #4C4C4C;
 }
-.big-bg{
+.dark .big-bg{
     background-color: #323232;
 }
-*{
+.dar{
+    color:white;
+}
+.dark .dar{
     color: 	#f2f2f2;
 }
 .bruh{
     color: 	#b2b2b2;
 }
-.small-btn{
+.dark .small-btn{
     background-color:#7f7f7f;
 }
-.big-btn{
+.dark .big-btn{
     background-color: #b2b2b2;
+}
+/* From uiverse.io by @aasisodiya */
+/* The switch - the box around the slider */
+.switch {
+ font-size: 1rem;
+ position: relative;
+ display: inline-block;
+ width: 3rem;
+ height: 1.5rem;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+ opacity: 0;
+ width: 0;
+ height: 0;
+}
+
+/* The slider */
+.slider {
+ position: absolute;
+ cursor: pointer;
+ inset: 0;
+ background-color: #eee;
+ transition: 0.4s;
+ border-radius: 0.5em;
+ box-shadow: 0 0.2em #dfd9d9;
+}
+
+.slider:before {
+ position: absolute;
+ content: "";
+ height: 1.3rem;
+ width: 1.4rem;
+ border-radius: 0.3em;
+ left: 0.3em;
+ bottom: 0.7em;
+ background-color: lightsalmon;
+ transition: 0.4s;
+ box-shadow: 0 0.4em #bcb4b4;
+}
+
+.slider:hover::before {
+ box-shadow: 0 0.2em #bcb4b4;
+ bottom: 0.5em;
+}
+
+input:checked+.slider:before {
+ transform: translateX(1.2em);
+ background: #7f7f7f;
 }

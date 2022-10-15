@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "animate.css";
-import { Icon } from '@iconify/react';
-import word from './word'
+import { Icon } from "@iconify/react";
+import Typed from "react-typed";
+import word from "./word";
 const App = () => {
-  
   const [user, setuser] = useState([]);
   const [ada, check_ada] = useState([]);
   const [ans, setans] = useState(
@@ -37,13 +37,12 @@ const App = () => {
     "Y",
     "Z",
   ];
-  const detect=(e)=>{
-    console.log(e.key)
-
-  }
-  useEffect(()=>{
-    document.addEventListener('keydown',detect,true)
-  },[ada])
+  const detect = (e) => {
+    console.log(e.key);
+  };
+  useEffect(() => {
+    document.addEventListener("keydown", detect, true);
+  }, [ada]);
 
   const [check_time, checkit] = useState(0);
   const [wrong, iswrong] = useState(0);
@@ -65,7 +64,7 @@ const App = () => {
               console.log(l);
               return l;
             });
-            check_ada([...ada,e])
+            check_ada([...ada, e]);
             checkit(check_time + l);
             console.log(check_time);
           }
@@ -77,136 +76,166 @@ const App = () => {
       iswrong(wrong + 1);
     }
   };
-
+  const [dark, theme] = useState(false);
   return (
-    <div className="flex justify-center items-center big-bg h-screen w-full flex-col relative">
-      <div className="absolute top-0 w-full p-3 flex flex-row items-center justify-between">
-        <div className="text-xl md:text-2xl">HANGMAN.</div>
-        <div className="flex flex-row items-center">
-          <div><a href="https://github.com/CTLM08"><Icon icon="ant-design:github-outlined" className="h-6 w-6 md:h-8 md:w-8"/></a></div>
+    <div className={dark ? "dark" : ""}>
+      <div className="dar flex justify-center items-center big-bg h-screen w-full flex-col relative">
+        <div className="absolute top-0 w-full p-3 flex flex-row items-center justify-between small-btn text-white dark:text-[#f2f2f2] dark:bg-[#323232]">
+          <div className="text-xl md:text-2xl">HANGMAN.</div>
+          <div className="flex flex-row items-center gap-5">
+            <div>
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  onClick={() => {
+                    theme(!dark);
+                  }}
+                />
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div>
+              <a href="https://github.com/CTLM08">
+                <Icon
+                  icon="ant-design:github-outlined"
+                  className="h-6 w-6 md:h-8 md:w-8 mr-3 md:mr-0"
+                />
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <div className="flex  gap-2 text-center mb-12">
-          {ans.split("").map((e) => (
-            <button>
-              <div
-                className={`w-7 h-7 md:w-12 md:h-12 big-btn flex justify-center items-center rounded-sm text-base md:text-xl `}
+
+        <div>
+          <div className="flex  gap-2 text-center mb-12">
+            {ans.split("").map((e) => (
+              <button>
+                <div
+                  className={`w-7 h-7 md:w-12 md:h-12 big-btn flex justify-center items-center rounded-sm text-base md:text-xl `}
+                >
+                  <botton className={`${!ada.includes(e) ? "bruh" : ""}`}>
+                    {!ada.includes(e) ? "" : `${e}`}
+                  </botton>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+        <div></div>
+        <div className="flex justify-center flex-col items-center">
+          <div className="flex flex-row gap-2 text-center">
+            {mother.map((e) => (
+              <button
+                className={` ${
+                  user.includes(e) || wrong >= 7
+                    ? "use text-slate-700"
+                    : "small-btn"
+                } rounded-sm `}
+                disabled={user.includes(e)}
+                onClick={() => {
+                  setuser([...user, e]);
+                  check(e);
+                }}
               >
-                <botton className={`${!ada.includes(e) ? "bruh" : ""}`}>
-                  {!ada.includes(e) ? "" : `${e}`}
-                </botton>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-      <div></div>
-      <div className="flex justify-center flex-col items-center">
-        <div className="flex flex-row gap-2 text-center">
-          {mother.map((e) => (
-            <button
-              className={` ${
-                user.includes(e) || wrong >= 7 ? "use" : "small-btn"
-              } rounded-sm `}
-              disabled={user.includes(e)}
-              onClick={() => {
-                setuser([...user, e]);
-                check(e);
-              }}
-            >
-              <div className={`w-6 h-6 md:w-8 md:h-8 flex justify-center items-center text-xs md:text-base `}>
-                <button>{e}</button>
-              </div>
-            </button>
-          ))}
-        </div>
-        <div className="grid grid-rows-3 grid-flow-col md:grid-rows-none  gap-2 mt-2">
-          {button.map((e) => (
-            <button
-              className={` ${
-                user.includes(e) || wrong >= 7 ? "use" : "small-btn"
-              } rounded-sm `}
-              onClick={() => {
-                setuser([...user, e]);
-                console.log(user);
-                check(e);
-              }}
-            >
-              {" "}
-              <div className="w-6 h-6 md:w-8 md:h-8 flex justify-center items-center rounded-sm text-xs md:text-base">
-                <botton>{e}</botton>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-row gap-2 mt-3">
-        {[1, 2, 3, 4, 5, 6, 7].map((e, i) => (
-          <div
-            className={`w-5 h-8 rounded-md ${
-              i < wrong ? "bg-rose-600 " : "small-btn"
-            }`}
-          ></div>
-        ))}
-      </div>
-      <div
-        onClick={() => {
-          setuser([]);
-          check_ada([]);
-          check_alpha(false);
-          checkit(0);
-          iswrong(0);
-          setans(word[Math.floor(Math.random() * word.length)].toUpperCase());
-        }}
-        className="small-btn  flex items-center justify-center rounded-md mt-3   text-center h-8 w-14"
-      >
-        <button>reset</button>
-      </div>
-      <div className="absolute">
-        {check_time == ans.length ? (
-          <div className="w-80 h-80  flex justify-center items-center win rounded-md flex-col animate__animated animate__lightSpeedInLeft">
-            <div className="text-5xl">YOU WIN!</div>
-            <div>congratulate</div>
-            <div
-              className="w-32 h-12 flex justify-center items-center big-btn rounded-md mt-2"
-              onClick={() => {
-                setuser([]);
-                check_ada([]);
-                check_alpha(false);
-                checkit(0);
-                iswrong(0);
-                setans(
-                  word[Math.floor(Math.random() * word.length)].toUpperCase()
-                );
-              }}
-            >
-              <button>continue</button>
-            </div>
+                <div
+                  className={`w-6 h-6 md:w-8 md:h-8 flex justify-center items-center text-xs md:text-base `}
+                >
+                  <button>{e}</button>
+                </div>
+              </button>
+            ))}
           </div>
-        ) : wrong >= 7 ? (
-          <div className="w-80 h-80 flex justify-center items-center win rounded-md flex-col animate__animated animate__lightSpeedInLeft">
-            <div className="text-5xl">YOU LOSE</div>
-            <div>the word:{ans}</div>
-            <div
-              className="w-32 h-12 flex justify-center items-center big-btn rounded-md mt-2"
-              onClick={() => {
-                setuser([]);
-                check_ada([]);
-                check_alpha(false);
-                checkit(0);
-                iswrong(0);
-                setans(
-                  word[Math.floor(Math.random() * word.length)].toUpperCase()
-                );
-              }}
-            >
-              <button>continue</button>
-            </div>
+          <div className="grid grid-rows-3 grid-flow-col md:grid-rows-none  gap-2 mt-2">
+            {button.map((e) => (
+              <button
+                className={` ${
+                  user.includes(e) || wrong >= 7
+                    ? "use text-slate-700"
+                    : "small-btn"
+                } rounded-sm `}
+                onClick={() => {
+                  setuser([...user, e]);
+                  console.log(user);
+                  check(e);
+                }}
+              >
+                {" "}
+                <div className="w-6 h-6 md:w-8 md:h-8 flex justify-center items-center rounded-sm text-xs md:text-base">
+                  <botton>{e}</botton>
+                </div>
+              </button>
+            ))}
           </div>
-        ) : (
-          ""
-        )}
+        </div>
+        <div className="flex flex-row gap-2 mt-3">
+          {[1, 2, 3, 4, 5, 6, 7].map((e, i) => (
+            <div
+              className={`w-5 h-8 rounded-md ${
+                i < wrong ? "bg-rose-600 " : "small-btn"
+              }`}
+            ></div>
+          ))}
+        </div>
+        <div
+          onClick={() => {
+            setuser([]);
+            check_ada([]);
+            check_alpha(false);
+            checkit(0);
+            iswrong(0);
+            setans(word[Math.floor(Math.random() * word.length)].toUpperCase());
+          }}
+          className="small-btn  flex items-center justify-center rounded-md mt-3   text-center h-8 w-14"
+        >
+          <button>reset</button>
+        </div>
+        <div className="absolute">
+          {check_time == ans.length ? (
+            <div className="w-80 h-80  flex justify-center items-center win rounded-md flex-col animate__animated animate__lightSpeedInLeft">
+              <div className="text-5xl">YOU WIN!</div>
+              <div>congratulate</div>
+              <div
+                className="w-32 h-12 flex justify-center items-center big-btn rounded-md mt-2"
+                onClick={() => {
+                  setuser([]);
+                  check_ada([]);
+                  check_alpha(false);
+                  checkit(0);
+                  iswrong(0);
+                  setans(
+                    word[Math.floor(Math.random() * word.length)].toUpperCase()
+                  );
+                }}
+              >
+                <button>continue</button>
+              </div>
+            </div>
+          ) : wrong >= 7 ? (
+            <div className="w-80 h-80 flex justify-center items-center win rounded-md flex-col animate__animated animate__lightSpeedInLeft">
+              <div className="text-5xl">YOU LOSE</div>
+              <div>the word:{ans}</div>
+              <div
+                className="w-32 h-12 flex justify-center items-center big-btn rounded-md mt-2"
+                onClick={() => {
+                  setuser([]);
+                  check_ada([]);
+                  check_alpha(false);
+                  checkit(0);
+                  iswrong(0);
+                  setans(
+                    word[Math.floor(Math.random() * word.length)].toUpperCase()
+                  );
+                }}
+              >
+                <button>continue</button>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+        <div className="absolute bottom-0 text-[#3b5998] dark:text-[#f2f2f2] ">
+          {dark ? <Typed key="typing-1" strings={["made LIMING from MRGA"]} typeSpeed={40} loop={false}/> : <Typed key="typing-2" strings={["made LIMING from MRGA"]} typeSpeed={40} loop={false}/> }
+        </div>
       </div>
     </div>
   );
