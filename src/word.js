@@ -996,4 +996,5 @@ const word = [
     "year",
     "young",
   ];
+
   export default word

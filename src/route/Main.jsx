@@ -38,12 +38,7 @@ const Main = () => {
         </div>
         <div className="flex flex-col justify-center items-center">
           <div className="text-2xl md:text-4xl text-neutral-800 dark:text-[#f2f2f2]">
-            <Typed
-              key="typing-1"
-              strings={["Welcome to HANGMAN."]}
-              typeSpeed={40}
-              loop={false}
-            />
+          {dark ? <Typed key="typing-1" strings={["Welcome to HANGMAN."]} typeSpeed={40} loop={false}/> : <Typed key="typing-2" strings={["Welcome to HANGMAN."]} typeSpeed={40} loop={false}/> }
           </div>
           <div>
           <NavLink to="/hangman" key="hangman" className="flex flex-row items-center mt-3">
