@@ -76,7 +76,7 @@ const Hangman = () => {
       });
     } else if (wrong >= 7) {
       setuser(button + mother);
-    } else if (!ans.includes(bruh) && wrong < 7) {
+    } else if (!ans.includes(bruh) && wrong < 7 && !user.includes(bruh)) {
       iswrong(wrong + 1);
     }
   };
